@@ -1,0 +1,47 @@
+service: serverless-payment-razorpay
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'ap-south-1'}
+  memorySize: 128
+  logRetentionInDays: 1
+  httpApi:
+    cors: true
+
+  environment:
+    RAZORPAY_API_KEY: ${self:custom.payment.RAZORPAY_API_KEY}
+    RAZORPAY_API_SECRET: ${self:custom.payment.RAZORPAY_API_SECRET}
+    REDIRECT_URL: https://d2fbxq64uacgnr.cloudfront.net
+
+custom:
+  payment: ${ssm:/aws/reference/secretsmanager/dev/payments}
+  serverless-offline:
+    httpPort: 3001
+
+functions:
+  checkout:
+    handler: src/handlers/checkout.handler
+    events:
+      - httpApi:
+          path: /payments/checkout
+          method: post
+
+  verify:
+    handler: src/handlers/verify.handler
+    events:
+      - httpApi:
+          path: /payments/verify
+          method: post
+
+  context:
+    handler: src/handlers/context.handler
+    events:
+      - httpApi:
+          path: /payments/context
+          method: get
+
+plugins:
+  - serverless-offline

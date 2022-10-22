@@ -1,0 +1,25 @@
+@host=http://localhost:3001
+
+POST {{host}}/payments/checkout
+Content-Type: application/json
+
+{
+    "amount": 100
+}
+
+###
+
+POST {{host}}/payments/verify
+Content-Type: application/json
+
+{
+    "razorpay_payment_id": "pay_KWpfy6YDBfbv0Z",
+    "razorpay_order_id":"order_KWpfo97aW6WiLb",
+    "razorpay_signature":"54d947d73667bfb7d731bc9d805d24ff299c68fcd84da54a9a65365d55e0d56d"
+}
+
+###
+POST {{host}}/payments/verify
+Content-Type: application/x-www-form-urlencoded
+
+razorpay_payment_id=pay_KWpsrzWMkvZ22T&razorpay_order_id=order_KWpsFsOMjeU8L2&razorpay_signature=eab94b81250b65a12e840b4884918f92781bd8810e91eb266c8cae1a7a4fb645
