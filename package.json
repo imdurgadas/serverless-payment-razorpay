@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "description": "Serverless APIs for RazorPay Integration using Serverless Framework",
   "main": "index.js",
+  "repository": {
+    "url": "https://github.com/imdurgadas/serverless-payment-razorpay"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "serverless",
+    "razorpay",
+    "lambda"
+  ],
+  "author": "Durgadas Kamath",
+  "license": "MIT",
   "devDependencies": {
     "serverless-offline": "^11.1.3"
   },
