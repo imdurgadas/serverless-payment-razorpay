@@ -1,6 +1,9 @@
 service: serverless-payment-razorpay
 frameworkVersion: '3'
 
+package:
+  individually: true
+
 provider:
   name: aws
   runtime: nodejs16.x
@@ -46,3 +49,4 @@ functions:
 
 plugins:
   - serverless-offline
+  - serverless-plugin-include-dependencies
